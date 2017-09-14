@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Player implements Serializable {
 
-    private TreeMap<Long, PlayerStat> mPlayerStats;
+    private TreeMap<Long, PStat> mPlayerStats;
     private String mUserName;
 
 
@@ -22,7 +22,7 @@ public class Player implements Serializable {
     public void getNewStats(){
 
         try {
-            PlayerStat temp = new PlayerStat(mUserName);
+            PStat temp = new PStat(mUserName);
             mPlayerStats.put(temp.getDate().getTime(), temp);
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,7 +47,7 @@ public class Player implements Serializable {
 
             try {
                 String psString = loadStringFromFile(mUserName + "/" + s);
-                PlayerStat ps = gson.fromJson(psString, PlayerStat.class);
+                PStat ps = gson.fromJson(psString, PStat.class);
                 mPlayerStats.put(ps.getDate().getTime(), ps);
 
             } catch (FileNotFoundException e) {
